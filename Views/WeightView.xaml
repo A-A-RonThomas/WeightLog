@@ -54,7 +54,7 @@
         </Grid>
         
         <lvc:CartesianChart Grid.Column="1" 
-                            Series="{Binding SeriesCollection}"
+                            Series="{Binding Series}"
                             Margin="25 25">
             
         </lvc:CartesianChart>

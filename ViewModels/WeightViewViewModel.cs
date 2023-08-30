@@ -79,7 +79,7 @@ namespace WeightLog.ViewModels
 		public WeightViewViewModel(WeightList weightList)
 		{
 			_weights = new ObservableCollection<WeightObjectViewModel>();
-			AddWeight = new AddWeightCommand(weightList);
+			AddWeight = new AddWeightCommand(weightList,_weights);
 		}
 	}
 }
