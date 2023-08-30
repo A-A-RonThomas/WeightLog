@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WeightLog.Models;
+using WeightLog.ViewModels;
 
 namespace WeightLog
 {
@@ -13,5 +15,22 @@ namespace WeightLog
     /// </summary>
     public partial class App : Application
     {
+        private readonly WeightList _weightList;
+
+        public App()
+        {
+            _weightList = new WeightList();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel(_weightList)
+            };
+            MainWindow.Show();
+
+            base.OnStartup(e);
+        }
     }
 }

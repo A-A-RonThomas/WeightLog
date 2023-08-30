@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
+using WeightLog.Models;
+using WeightLog.ViewModels;
 
 namespace WeightLog.Views
 {
