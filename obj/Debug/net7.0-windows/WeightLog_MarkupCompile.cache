@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\App.xaml
-2-1772676132
+32032490237
 
-12-1498706687
+16-1532029054
 200-816367186
-MainWindow.xaml;Views\WeightView.xaml;
+MainWindow.xaml;Views\NewWeightView.xaml;Views\WeightView.xaml;
 
 False
 

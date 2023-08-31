@@ -25,3 +25,5 @@ C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\bin\Debug\net7.0-windows\
 C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\bin\Debug\net7.0-windows\LiveCharts.Wpf.dll
 C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\obj\Debug\net7.0-windows\WeightLog.csproj.AssemblyReference.cache
 C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\obj\Debug\net7.0-windows\WeightLog.csproj.CopyComplete
+C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\obj\Debug\net7.0-windows\Views\NewWeightView.g.cs
+C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\obj\Debug\net7.0-windows\Views\NewWeightView.baml

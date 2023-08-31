@@ -20,5 +20,15 @@ namespace WeightLog.Models
             weightList.Add(weight);        
         }
 
+        public override string ToString()
+        {
+            string built = "";
+            foreach (Weight weight in weightList)
+            {
+                built += weight.ToString();
+            }
+
+            return built;
+        }
     }
 }

@@ -23,5 +23,10 @@ namespace WeightLog.Models
 
         public bool Equals(Weight weight) => WeightNum == weight.WeightNum &&
                 Date == weight.Date;
+
+        public override string ToString()
+        {
+            return "Weight: " + WeightNum.ToString();
+        }
     }
 }
