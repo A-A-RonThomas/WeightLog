@@ -55,7 +55,7 @@
         </Grid>
         
         <lvc:CartesianChart Grid.Column="1" Series="{Binding Series}" Margin="25 25">
-            <!--<lvc:LineSeries Values="{Binding Line}" Configuration="{Binding Mapper}"/>-->
+            <!--<lvc:LineSeries DataContext="{Binding Line}"/>-->
 
         </lvc:CartesianChart>
     </Grid>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +40,7 @@ namespace WeightLog.ViewModels
 			}
 		}
 
-		private string _weightNum = "0";
+		private string _weightNum;
 		public string WeightNum
 		{
 			get
@@ -56,13 +57,13 @@ namespace WeightLog.ViewModels
 		public ICommand Add { get; }
 		public ICommand Cancel { get; }
 
-		public NewWeightViewModel(WeightList _weightList)
+		public NewWeightViewModel(WeightList _weightList, ObservableCollection<WeightObjectViewModel> _weightObjects)
 		{
 			//WeightNum = "0";
 			SelectedDate = DateTime.Now;
 			Date = DateTime.Now.ToString("M");
 
-			Add = new SubmitNewWeightCommand(_weightList, SelectedDate, double.Parse(WeightNum));
+			Add = new SubmitNewWeightCommand(this,_weightList, _weightObjects);
 			Cancel = new CancelCommand();
 		}
 	}

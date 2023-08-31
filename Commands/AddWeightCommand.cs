@@ -13,41 +13,18 @@ namespace WeightLog.Commands
     public class AddWeightCommand : CommandBase
     {
         private readonly WeightList _weightList;
+        private readonly ObservableCollection<WeightObjectViewModel> _weightObjects;
         public override void Execute(object? parameter)
         {
             NewWeightView newWeight = new NewWeightView();
-            newWeight.DataContext = new NewWeightViewModel(_weightList);
+            newWeight.DataContext = new NewWeightViewModel(_weightList, _weightObjects);
             newWeight.Show();
         }
 
-        public AddWeightCommand(WeightList weightList)
+        public AddWeightCommand(WeightList weightList, ObservableCollection<WeightObjectViewModel> weightObjects)
         {
             _weightList = weightList;
+            _weightObjects = weightObjects;
         }
-
-
-
-
-
-
-
-
-
-        //private readonly ObservableCollection<WeightObjectViewModel> _weightObjects;
-        //private readonly WeightList _weightList;
-
-        //public AddWeightCommand(WeightList weightList, ObservableCollection<WeightObjectViewModel> obWeightList)
-        //{
-        //    _weightList = weightList;
-        //    _weightObjects = obWeightList;
-        //}
-
-        //public override void Execute(object? parameter)
-        //{
-        //    Weight weight = new Weight(245, DateTime.Now);
-
-        //    _weightList.addWeight(weight);
-        //    _weightObjects.Add(new WeightObjectViewModel(weight));
-        //}
     }
 }

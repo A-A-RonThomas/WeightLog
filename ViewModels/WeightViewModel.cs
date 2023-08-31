@@ -19,8 +19,9 @@ namespace WeightLog.ViewModels
 		//private readonly WeightList _weightList;
 		public CartesianMapper<WeightObjectViewModel> Mapper { get; set; }
 
-		private readonly ObservableCollection<WeightObjectViewModel> _weights;
 		public IEnumerable<WeightObjectViewModel> Weights => _weights;
+
+		private ObservableCollection<WeightObjectViewModel> _weights;
 
 		private SeriesCollection series;
 		public SeriesCollection Series
@@ -33,6 +34,20 @@ namespace WeightLog.ViewModels
 			{
 				series = value;
 				OnPropertyChanged(nameof(Series));
+			}
+		}
+
+		private LineSeries _line;
+		public LineSeries Line
+		{
+			get
+			{
+				return _line;
+			}
+			set
+			{
+				_line = value;
+				OnPropertyChanged(nameof(Line));
 			}
 		}
 
@@ -89,8 +104,9 @@ namespace WeightLog.ViewModels
 			Mapper = Mappers.Xy<WeightObjectViewModel>()
 				.Y(elem => elem.WeightNum);
 
-			AddWeight = new AddWeightCommand(weightList);
-			//AddWeight = new AddWeightCommand(weightList, _weights);
+			Line = new LineSeries();
+			
+			AddWeight = new AddWeightCommand(weightList, _weights);
 
 		}
 	}

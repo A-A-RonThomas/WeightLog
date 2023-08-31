@@ -17,7 +17,16 @@ namespace WeightLog.Models
 
         public void addWeight(Weight weight) 
         {
-            weightList.Add(weight);        
+            if(weightList.Count - 1 >= 0)
+            {
+                Weight lastEntered = weightList[weightList.Count - 1];
+                if (lastEntered != null)
+                {
+                    weight.Percentage = (weight.WeightNum - lastEntered.WeightNum) / lastEntered.WeightNum * 100;
+                }
+            }
+                
+            weightList.Add(weight);
         }
 
         public override string ToString()
