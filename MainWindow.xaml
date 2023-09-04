@@ -3,12 +3,64 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeightLog" xmlns:views="clr-namespace:WeightLog.Views"
+        xmlns:local="clr-namespace:WeightLog" 
+        xmlns:views="clr-namespace:WeightLog.Views"
         mc:Ignorable="d"
-        Title="WeightLog" Height="450" Width="800">
-    
-    
+        Title="WeightLog" Height="450" Width="800"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+
+
     <Grid>
-        <views:WeightView DataContext="{Binding CurrentViewModel}"/>
+        <Grid.RowDefinitions>
+            <!--Title Bar-->
+            <RowDefinition Height="20" />
+            
+            <!--Main Content-->
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        
+        <!--Title Bar Element-->
+        <Grid Grid.Row="0" 
+              Background="LightGray">
+
+            <Grid.ColumnDefinitions>
+                
+                <!--Menu Options-->
+                <ColumnDefinition Width="1*" />
+                
+                <!--Minimize, Close Buttons-->
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="Minimize"
+                            Grid.Column="0"
+                            Content="_"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Command = "{Binding Minimize}"
+                            CommandParameter = "{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+                    
+                    <Button x:Name="Close"
+                            Grid.Column="1"
+                            Content="X" 
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            Command="{Binding Close}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+                    
+                </Grid>
+            </Grid>
+        </Grid>
+        
+        <!--Main Content-->
+        <views:WeightView Grid.Row="1"
+                          DataContext="{Binding CurrentViewModel}"/>
     </Grid>
 </Window>

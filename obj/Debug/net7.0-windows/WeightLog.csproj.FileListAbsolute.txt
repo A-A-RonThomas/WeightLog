@@ -27,3 +27,5 @@ C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\obj\Debug\net7.0-windows\
 C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\obj\Debug\net7.0-windows\WeightLog.pdb
 C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\obj\Debug\net7.0-windows\WeightLog.genruntimeconfig.cache
 C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\obj\Debug\net7.0-windows\ref\WeightLog.dll
+C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\bin\Debug\net7.0-windows\Microsoft.Expression.Interactions.dll
+C:\Users\ajtho\Desktop\WPF Personal Projects\WeightLog\bin\Debug\net7.0-windows\System.Windows.Interactivity.dll

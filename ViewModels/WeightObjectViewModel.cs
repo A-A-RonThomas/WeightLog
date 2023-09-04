@@ -1,24 +1,16 @@
-﻿using LiveCharts;
-using LiveCharts.Definitions.Series;
-using LiveCharts.Helpers;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using WeightLog.Models;
 
 namespace WeightLog.ViewModels
 {
+    [Serializable]
     public class WeightObjectViewModel : ViewModelBase
     {
         private readonly Weight _weight;
 
         private double _weightNum;
         public double WeightNum
-        {
+        {   
             get
             {
                 return _weightNum;
@@ -44,9 +36,9 @@ namespace WeightLog.ViewModels
             }
         }
 
-        private double? _percentage;
+        private string? _percentage;
 
-        public double? Percentage
+        public string? Percentage
         {
             get
             {
@@ -65,5 +57,8 @@ namespace WeightLog.ViewModels
             WeightNum = _weight.WeightNum;
             Date = _weight.Date.ToString("d");
         }
+
+        //Empty Contstructor for the Serializer to XML.
+        public WeightObjectViewModel() { }
     }
 }

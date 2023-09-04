@@ -1,14 +1,12 @@
 ﻿using LiveCharts;
-using LiveCharts.Configurations;
-using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
+using System.Xml.Serialization;
 using WeightLog.Commands;
 using WeightLog.Models;
 
@@ -61,6 +59,7 @@ namespace WeightLog.ViewModels
 			}
 		}
 
+		//Label formater to limit the y-axis to a double with only 1 digit after the decimal.
 		public Func<double, string> OneDigit => value => value.ToString("N1");
 
         public ICommand AddWeight { get; }
@@ -68,15 +67,16 @@ namespace WeightLog.ViewModels
 
 		public WeightViewModel(WeightList weightList)
 		{
+			try
+			{
+				Weights = LoadFromXml("data.xml");
+			}
 
-			//Weights = new ObservableCollection<WeightObjectViewModel>
-			//{
-			//	new WeightObjectViewModel(new Weight(145, DateTime.Now)),
-			//	new WeightObjectViewModel(new Weight(140, DateTime.Now)),
-			//	new WeightObjectViewModel(new Weight(135, DateTime.Now))
-			//};
+			catch (Exception ex)
+			{
+				Weights = new ObservableCollection<WeightObjectViewModel>();
 
-			Weights = new ObservableCollection<WeightObjectViewModel>();
+			}
 
 			Labels = new List<string>();
 
@@ -101,6 +101,26 @@ namespace WeightLog.ViewModels
             Series[0].Values = new ChartValues<double>(Weights.Select(weight => weight.WeightNum));
             Labels.Clear();
             Labels.AddRange(Weights.Select(weight => weight.Date));
+        }
+
+        public void SaveToXml(ObservableCollection<WeightObjectViewModel> collection, string filePath)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<WeightObjectViewModel>));
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Create))
+            {
+                serializer.Serialize(fs, collection);
+            }
+        }
+
+        public ObservableCollection<WeightObjectViewModel> LoadFromXml(string filePath)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<WeightObjectViewModel>));
+
+            using (FileStream fs = new FileStream(filePath, FileMode.Open))
+            {
+                return (ObservableCollection<WeightObjectViewModel>)serializer.Deserialize(fs);
+            }
         }
     }
 }
