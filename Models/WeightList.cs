@@ -39,5 +39,10 @@ namespace WeightLog.Models
 
             return built;
         }
+
+        public List<Weight> GetWeights()
+        {
+            return weightList;
+        }
     }
 }

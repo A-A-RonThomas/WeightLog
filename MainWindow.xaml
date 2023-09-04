@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:WeightLog" xmlns:views="clr-namespace:WeightLog.Views"
         mc:Ignorable="d"
         Title="WeightLog" Height="450" Width="800">
+    
+    
     <Grid>
         <views:WeightView DataContext="{Binding CurrentViewModel}"/>
     </Grid>

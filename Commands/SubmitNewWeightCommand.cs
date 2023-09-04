@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -12,28 +13,30 @@ namespace WeightLog.Commands
 {
     public class SubmitNewWeightCommand : CommandBase
     {
-        private readonly WeightList _weightList;
         private readonly NewWeightViewModel _newWeightViewModel;
-        private readonly ObservableCollection<WeightObjectViewModel> _weightObjects;
-        private Weight weightEntered;
+        private readonly WeightViewModel _weightViewModel;
+
         public override void Execute(object? parameter)
         {
-            weightEntered = new Weight(double.Parse(_newWeightViewModel.WeightNum), _newWeightViewModel.SelectedDate);
-            _weightList.addWeight(weightEntered);
-            
-            _weightObjects.Add(new WeightObjectViewModel(weightEntered));
-            Debug.WriteLine(_weightList.ToString());
+            // Creates the new weight object
+            Weight newWeight = new Weight(double.Parse(_newWeightViewModel.WeightNum), _newWeightViewModel.SelectedDate);
+            WeightObjectViewModel weightObj = new WeightObjectViewModel(newWeight);
+
+
+
+            //Adds the new weight object to the Weights ObservableCollection
+            _weightViewModel.Weights.Add(weightObj);
+            _weightViewModel.UpdateChart();
+
 
             var window = parameter as System.Windows.Window;
             window?.Close();
         }
 
-        public SubmitNewWeightCommand(NewWeightViewModel viewModel, WeightList weightList,
-            ObservableCollection<WeightObjectViewModel> weightObjects)
+        public SubmitNewWeightCommand(NewWeightViewModel viewModel, WeightViewModel callingViewModel)
         {
-            _weightList = weightList;
             _newWeightViewModel = viewModel;
-            _weightObjects = weightObjects;
+            _weightViewModel = callingViewModel;
         }
     }
 }

@@ -36,6 +36,7 @@ namespace WeightLog.ViewModels
 			set
 			{
 				_selectedDate = value;
+				Date = _selectedDate.ToString("M");
 				OnPropertyChanged(nameof(SelectedDate));
 			}
 		}
@@ -57,13 +58,12 @@ namespace WeightLog.ViewModels
 		public ICommand Add { get; }
 		public ICommand Cancel { get; }
 
-		public NewWeightViewModel(WeightList _weightList, ObservableCollection<WeightObjectViewModel> _weightObjects)
+		public NewWeightViewModel(WeightViewModel callingViewModel)
 		{
-			//WeightNum = "0";
 			SelectedDate = DateTime.Now;
 			Date = DateTime.Now.ToString("M");
 
-			Add = new SubmitNewWeightCommand(this,_weightList, _weightObjects);
+			Add = new SubmitNewWeightCommand(this, callingViewModel);
 			Cancel = new CancelCommand();
 		}
 	}

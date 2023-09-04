@@ -1,13 +1,13 @@
 ﻿using LiveCharts;
 using LiveCharts.Configurations;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using WeightLog.Commands;
 using WeightLog.Models;
@@ -16,98 +16,91 @@ namespace WeightLog.ViewModels
 {
     public class WeightViewModel : ViewModelBase
     {
-		//private readonly WeightList _weightList;
-		public CartesianMapper<WeightObjectViewModel> Mapper { get; set; }
-
-		public IEnumerable<WeightObjectViewModel> Weights => _weights;
+		private List<string> _labels;
+		public List<string> Labels
+		{
+			get
+			{
+				return _labels;
+			}
+			set
+			{
+				_labels = value;
+				OnPropertyChanged(nameof(Labels));
+			}
+		}
 
 		private ObservableCollection<WeightObjectViewModel> _weights;
+		public ObservableCollection<WeightObjectViewModel> Weights
+		{
+			get
+			{
+				return _weights;
+			}
+			set
+			{
+				if (_weights != value)
+				{
+					_weights = value;
+					OnPropertyChanged(nameof(Weights));
+				}
+			}
+		}
 
-		private SeriesCollection series;
+		private SeriesCollection _series;
 		public SeriesCollection Series
 		{
 			get
 			{
-				return series;
+				return _series;
 			}
 			set
 			{
-				series = value;
+				_series = value;
 				OnPropertyChanged(nameof(Series));
 			}
 		}
 
-		private LineSeries _line;
-		public LineSeries Line
-		{
-			get
-			{
-				return _line;
-			}
-			set
-			{
-				_line = value;
-				OnPropertyChanged(nameof(Line));
-			}
-		}
+		public Func<double, string> OneDigit => value => value.ToString("N1");
 
-		private DateTime date;
-		public DateTime Date
-		{
-			get
-			{
-				return date;
-			}
-			set
-			{
-				date = value;
-				OnPropertyChanged(nameof(Date));
-			}
-		}
-
-		private double weight;
-		public double Weight
-		{
-			get
-			{
-				return weight;
-			}
-			set
-			{
-				weight = value;
-				OnPropertyChanged(nameof(Weight));
-			}
-		}
-
-		private double percentage;
-		public double Percentage
-		{
-			get
-			{
-				return percentage;
-			}
-			set
-			{
-				percentage = value;
-				OnPropertyChanged(nameof(Percentage));
-			}
-		}
-
-
-		public ICommand AddWeight { get; }
+        public ICommand AddWeight { get; }
 
 
 		public WeightViewModel(WeightList weightList)
 		{
-			_weights = new ObservableCollection<WeightObjectViewModel>();
 
-			Mapper = Mappers.Xy<WeightObjectViewModel>()
-				.Y(elem => elem.WeightNum);
+			//Weights = new ObservableCollection<WeightObjectViewModel>
+			//{
+			//	new WeightObjectViewModel(new Weight(145, DateTime.Now)),
+			//	new WeightObjectViewModel(new Weight(140, DateTime.Now)),
+			//	new WeightObjectViewModel(new Weight(135, DateTime.Now))
+			//};
 
-			Line = new LineSeries();
+			Weights = new ObservableCollection<WeightObjectViewModel>();
+
+			Labels = new List<string>();
+
+			Series = new SeriesCollection
+			{
+				new LineSeries
+				{
+					Title = "Foo",
+					Values = new ChartValues<double>()
+				}
+			};
+
+			Labels.AddRange(Weights.Select(weight => weight.Date));
+
+			Series[0].Values = new ChartValues<double>(Weights.Select(weight => weight.WeightNum));
 			
-			AddWeight = new AddWeightCommand(weightList, _weights);
-
+			AddWeight = new AddWeightCommand(this);
 		}
-	}
+
+        public void UpdateChart()
+        {
+            Series[0].Values = new ChartValues<double>(Weights.Select(weight => weight.WeightNum));
+            Labels.Clear();
+            Labels.AddRange(Weights.Select(weight => weight.Date));
+        }
+    }
 }

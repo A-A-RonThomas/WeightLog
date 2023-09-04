@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,19 +13,18 @@ namespace WeightLog.Commands
 {
     public class AddWeightCommand : CommandBase
     {
-        private readonly WeightList _weightList;
-        private readonly ObservableCollection<WeightObjectViewModel> _weightObjects;
+        private WeightViewModel weightViewModel;
+
         public override void Execute(object? parameter)
         {
             NewWeightView newWeight = new NewWeightView();
-            newWeight.DataContext = new NewWeightViewModel(_weightList, _weightObjects);
+            newWeight.DataContext = new NewWeightViewModel(weightViewModel);
             newWeight.Show();
         }
 
-        public AddWeightCommand(WeightList weightList, ObservableCollection<WeightObjectViewModel> weightObjects)
+        public AddWeightCommand(WeightViewModel viewModel)
         {
-            _weightList = weightList;
-            _weightObjects = weightObjects;
+            weightViewModel = viewModel;
         }
     }
 }
