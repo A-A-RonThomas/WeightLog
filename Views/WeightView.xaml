@@ -28,19 +28,28 @@
                            FontSize="25"/>
 
             <ListView Grid.Row="1" 
-                          Name="WeightsList"
-                          ItemsSource="{Binding Weights}"
-                          HorizontalAlignment="Stretch" 
-                          VerticalAlignment="Stretch"
-                          BorderThickness="0"
-                          Margin="0 0 20 0"
-                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                          >
-                <ListView.View >
-                    <GridView >
-                        <GridViewColumn Header="Date" Width="60" DisplayMemberBinding="{Binding Date}" />
-                        <GridViewColumn Header="Weight" Width="60" DisplayMemberBinding="{Binding WeightNum}" />
-                        <GridViewColumn Header="% Change" Width="60" DisplayMemberBinding="{Binding Percentage}" />
+                      Name="WeightsList"
+                      ItemsSource="{Binding Weights}"
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Stretch"
+                      BorderThickness="0"
+                      Margin="0 0 20 0"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      Foreground="Black">
+                
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Date"
+                                        Width="60"
+                                        DisplayMemberBinding="{Binding Date}"/>
+                        
+                        <GridViewColumn Header="Weight"
+                                        Width="60"
+                                        DisplayMemberBinding="{Binding WeightNum}"/>
+                        
+                        <GridViewColumn Header="% Change"
+                                        Width="60"
+                                        DisplayMemberBinding="{Binding Percentage}" />
                     </GridView>
                 </ListView.View>
             </ListView>
