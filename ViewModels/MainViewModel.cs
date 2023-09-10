@@ -17,9 +17,6 @@ namespace WeightLog.ViewModels
 		public MainViewModel(WeightList weightList)
         {
             CurrentViewModel = new WeightViewModel(weightList);
-
-
-
             Minimize = new MinimizeCommand();
             Close = new CloseCommand();
         }

@@ -71,8 +71,5 @@
                 <lvc:Axis Title="Weights" LabelFormatter="{Binding OneDigit}"/>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
-
-
-
     </Grid>
 </UserControl>

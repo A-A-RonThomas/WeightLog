@@ -66,7 +66,6 @@ namespace WeightLog.ViewModels
 
 		public ICommand RemoveWeight { get; }
 
-
 		public WeightViewModel(WeightList weightList)
 		{
 			try
@@ -96,7 +95,7 @@ namespace WeightLog.ViewModels
 			Series[0].Values = new ChartValues<double>(Weights.Select(weight => weight.WeightNum));
 			
 			AddWeight = new AddWeightCommand(this);
-			RemoveWeight = new RemoveWeightCommand();
+			//RemoveWeight = new RemoveWeightCommand();
 		}
 
         public void UpdateChart()

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfWeightObjectViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WeightObjectViewModel>
+    <WeightNum>292</WeightNum>
+    <Date>7/31/2023</Date>
+  </WeightObjectViewModel>
+  <WeightObjectViewModel>
+    <WeightNum>282</WeightNum>
+    <Date>8/13/2023</Date>
+    <Percentage>-3.42%</Percentage>
+  </WeightObjectViewModel>
+  <WeightObjectViewModel>
+    <WeightNum>277.6</WeightNum>
+    <Date>8/20/2023</Date>
+    <Percentage>-1.56%</Percentage>
+  </WeightObjectViewModel>
+  <WeightObjectViewModel>
+    <WeightNum>275.8</WeightNum>
+    <Date>8/27/2023</Date>
+    <Percentage>-0.65%</Percentage>
+  </WeightObjectViewModel>
+  <WeightObjectViewModel>
+    <WeightNum>272.4</WeightNum>
+    <Date>9/2/2023</Date>
+    <Percentage>-1.23%</Percentage>
+  </WeightObjectViewModel>
+  <WeightObjectViewModel>
+    <WeightNum>279.7</WeightNum>
+    <Date>9/10/2023</Date>
+    <Percentage>2.68%</Percentage>
+  </WeightObjectViewModel>
+</ArrayOfWeightObjectViewModel>
